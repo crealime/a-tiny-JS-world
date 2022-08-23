@@ -24,21 +24,6 @@ const woman = new CreateInhabitant('human', 'Jane Doe', 'female', 2, 2, 'Hi all!
 const catWoman = new CreateInhabitant('cat-woman', 'Selina Kyle', 'female', 2, 2, cat.saying)
 const pirate = new CreateInhabitant('human', 'John Silver', 'male', 1, 2, 'Give no quarter!')
 
-
-class CatWoman {
-	constructor(name) {
-		this.species = 'cat-woman'
-		this.name = name
-		this.gender = 'female'
-		this.legs = 2
-		this.hands = 2
-		this.friends = []
-	}
-	get saying() {
-		return cat.saying
-	}
-}
-
 dog.friends.push(cat.name, man.name)
 cat.friends.push(dog.name, woman.name, catWoman.name)
 man.friends.push(dog.name, woman.name)
