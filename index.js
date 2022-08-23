@@ -7,7 +7,7 @@
 
 // ======== OBJECTS DEFINITIONS ========
 
-function createInhabitant(species, name, gender, legs, hands, saying) {
+function CreateInhabitant(species, name, gender, legs, hands, saying) {
 		this.species = species
 		this.name = name
 		this.gender = gender
@@ -17,12 +17,12 @@ function createInhabitant(species, name, gender, legs, hands, saying) {
 		this.friends = []
 }
 
-const dog = new createInhabitant('dog', 'Marley', 'male', 4, 0, 'Woof-woof!')
-const cat = new createInhabitant('cat', 'Sophie', 'female', 4, 0, 'Meow-meow!')
-const man = new createInhabitant('human', 'John Doe', 'male', 2, 2, 'Hello everyone!')
-const woman = new createInhabitant('human', 'Jane Doe', 'female', 2, 2, 'Hi all!')
-const catWoman = new createInhabitant('cat-woman', 'Selina Kyle', 'female', 2, 2, cat.saying)
-const pirate = new createInhabitant('human', 'John Silver', 'male', 1, 2, 'Give no quarter!')
+const dog = new CreateInhabitant('dog', 'Marley', 'male', 4, 0, 'Woof-woof!')
+const cat = new CreateInhabitant('cat', 'Sophie', 'female', 4, 0, 'Meow-meow!')
+const man = new CreateInhabitant('human', 'John Doe', 'male', 2, 2, 'Hello everyone!')
+const woman = new CreateInhabitant('human', 'Jane Doe', 'female', 2, 2, 'Hi all!')
+const catWoman = new CreateInhabitant('cat-woman', 'Selina Kyle', 'female', 2, 2, cat.saying)
+const pirate = new CreateInhabitant('human', 'John Silver', 'male', 1, 2, 'Give no quarter!')
 
 
 class CatWoman {
