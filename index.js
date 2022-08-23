@@ -8,13 +8,13 @@
 // ======== OBJECTS DEFINITIONS ========
 
 function CreateInhabitant(species, name, gender, legs, hands, saying) {
-		this.species = species
-		this.name = name
-		this.gender = gender
-		this.legs = legs
-		this.hands = hands
-		this.saying = saying
-		this.friends = []
+	this.species = species
+	this.name = name
+	this.gender = gender
+	this.legs = legs
+	this.hands = hands
+	this.saying = saying
+	this.friends = []
 }
 
 const dog = new CreateInhabitant('dog', 'Marley', 'male', 4, 0, 'Woof-woof!')
