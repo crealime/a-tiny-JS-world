@@ -41,8 +41,8 @@ class Cat extends Inhabitant {
 }
 
 class Human extends Inhabitant {
-	constructor(name, surname, gender, legs, hands, saying) {
-		super('human', name, gender, saying)
+	constructor(name, surname, gender, legs, hands, saying, society = false) {
+		super('human', name, gender, saying, society)
 		this.surname = surname
 		this.legs = legs
 		this.hands = hands
@@ -53,8 +53,8 @@ class Human extends Inhabitant {
 }
 
 class CatWoman extends Inhabitant {
-	constructor(name, surname, saying) {
-		super('cat-woman', name, 'female', saying)
+	constructor(name, surname, saying, society = false) {
+		super('cat-woman', name, 'female', saying, society)
 		this.surname = surname
 		this.legs = 2
 		this.hands = 2
@@ -63,6 +63,7 @@ class CatWoman extends Inhabitant {
 		return `${this.name} ${this.surname}`
 	}
 }
+
 
 const dog = new Dog('Marley', 'male', 4)
 const cat = new Cat('Sophie', 'female', 4)
@@ -77,7 +78,25 @@ man.friends.push(dog.name, woman.name)
 woman.friends.push(cat.name, man.name)
 catWoman.friends.push(cat.name)
 
+const secretSociety = []
 const allInhabitant = [dog, cat, man, woman, catWoman, pirate]
+
+function addToSociety(society, obj) {
+	society.push(obj.id)
+}
+
+addToSociety(secretSociety, catWoman)
+addToSociety(secretSociety, pirate)
+
+function isInSociety(society, objects) {
+	const arrInSociety = []
+
+	objects.forEach(el => {
+		if (society.some(soc => soc === el.id )) arrInSociety.push(el.name)
+	})
+
+	return arrInSociety.join(', ')
+}
 
 // ======== OUTPUT ========
 /* Use print(message) for output.
@@ -111,3 +130,8 @@ function greetings(obj) {
 allInhabitant.forEach(el => {
 	print(greetings(el))
 })
+
+const getMembers = `${isInSociety(secretSociety, allInhabitant)} ${secretSociety.length < 1 ? '' : secretSociety.length === 1 ? 'in a secret society...' : 'are in a secret society...'}`
+
+print(' ')
+print(getMembers)
