@@ -8,46 +8,45 @@
 // ======== OBJECTS DEFINITIONS ========
 
 class Inhabitant {
-	constructor(species, name, gender, legs, hands, saying) {
+	constructor(species, name, gender, saying) {
 		this.species = species
 		this.name = name
 		this.gender = gender
-		this.legs = legs
-		this.hands = hands
 		this.saying = saying
 		this.friends = []
 	}
 }
 
+
+
 class Dog extends Inhabitant {
-	constructor(name, gender) {
-		super('dog', name, gender, 4, 0, 'Woof-woof!')
+	constructor(name, gender, legs) {
+		super('dog', name, gender, 'Woof-woof!')
+		this.legs = legs
 	}
 }
 
 class Cat extends Inhabitant {
-	constructor(name, gender) {
-		super('cat', name, gender, 4, 0, 'Meow-meow!')
+	constructor(name, gender, legs) {
+		super('cat', name, gender, 'Meow-meow!')
+		this.legs = legs
 	}
 }
 
 class Human extends Inhabitant {
-	constructor(name, gender) {
-		super('human', name, gender, 2, 2, 'Hello everyone!')
-	}
-}
-
-class Pirate extends Inhabitant {
-	constructor(name, gender, legs, hands) {
-		super('human', name, gender, legs, hands, 'Give no quarter!')
+	constructor(name, gender, legs, hands, saying) {
+		super('human', name, gender, saying)
+		this.legs = legs
+		this.hands = hands
+		this.saying = saying
 	}
 }
 
 const dog = new Dog('Marley', 'male')
 const cat = new Cat('Sophie', 'female')
-const man = new Human('John Doe', 'male')
-const pirate = new Pirate('John Silver', 'male', 1, 2)
-const woman = new Human('Jane Doe', 'female')
+const man = new Human('John Doe', 'male', 2, 2, 'Hello everyone!')
+const woman = new Human('Jane Doe', 'female', 2, 2, 'Hi all!')
+const pirate = new Human('John Silver', 'male', 1, 2, '')
 
 // const woman2 = woman
 // woman2.name = 'Sonia Smith'
