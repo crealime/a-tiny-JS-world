@@ -7,17 +7,24 @@
 
 // ======== OBJECTS DEFINITIONS ========
 
+function getRandomId() {
+	return Math.floor(1000 + Math.random() * (9999 + 1 - 1000)) + new Date().toLocaleString().replace(/\D/g, '')
+}
+
 class Inhabitant {
 	constructor(species, name, gender, saying) {
+		this.id = getRandomId()
 		this.species = species
 		this.name = name
 		this.gender = gender
 		this.saying = saying
 		this.friends = []
 	}
+
+	getFullName() {
+		return this.name
+	}
 }
-
-
 
 class Dog extends Inhabitant {
 	constructor(name, gender, legs) {
@@ -34,38 +41,35 @@ class Cat extends Inhabitant {
 }
 
 class Human extends Inhabitant {
-	constructor(name, gender, legs, hands, saying) {
+	constructor(name, surname, gender, legs, hands, saying) {
 		super('human', name, gender, saying)
+		this.surname = surname
 		this.legs = legs
 		this.hands = hands
-		this.saying = saying
+	}
+	getFullName() {
+		return `${super.getFullName()} ${this.surname}`
 	}
 }
 
-const dog = new Dog('Marley', 'male')
-const cat = new Cat('Sophie', 'female')
-const man = new Human('John Doe', 'male', 2, 2, 'Hello everyone!')
-const woman = new Human('Jane Doe', 'female', 2, 2, 'Hi all!')
-const pirate = new Human('John Silver', 'male', 1, 2, '')
-
-// const woman2 = woman
-// woman2.name = 'Sonia Smith'
-
-class CatWoman {
-	constructor(name) {
-		this.species = 'cat-woman'
-		this.name = name
-		this.gender = 'female'
+class CatWoman extends Inhabitant {
+	constructor(name, surname, saying) {
+		super('cat-woman', name, 'female', saying)
+		this.surname = surname
 		this.legs = 2
 		this.hands = 2
-		this.friends = []
 	}
-	get saying() {
-		return cat.saying
+	getFullName() {
+		return `${this.name} ${this.surname}`
 	}
 }
 
-const catWoman = new CatWoman('Selina Kyle')
+const dog = new Dog('Marley', 'male', 4)
+const cat = new Cat('Sophie', 'female', 4)
+const man = new Human('Harry', 'Taylor', 'male', 2, 2, 'Hello everyone!')
+const woman = new Human('Emily', 'Brown', 'female', 2, 2, 'Hi all!')
+const pirate = new Human('John', 'Silver', 'male', 1, 2, 'Give no quarter!')
+const catWoman = new CatWoman('Selina', 'Kyle', cat.saying)
 
 dog.friends.push(cat.name, man.name)
 cat.friends.push(dog.name, woman.name, catWoman.name)
@@ -95,7 +99,13 @@ const allInhabitant = [dog, cat, man, woman, catWoman, pirate]
    */
 
 function greetings(obj) {
-	return `${obj.saying} My name is ${obj.name} and I am a ${obj.species}! My gender is ${obj.gender}. I have ${obj.hands} ${obj.hands === 1 ? 'hand' : 'hands'} and ${obj.legs} ${obj.legs === 1 ? 'leg' : 'legs'}. I ${obj.friends.length < 1 ? 'don\'t have friends': obj.friends.length === 1 ? 'have ' + obj.friends.length + ' friend: ' + obj.friends[0] : 'have ' + obj.friends.length + ' friends: ' + obj.friends.join(', ')}.`
+	const getAcquaintance = `This is ${obj.getFullName()} and ${obj.gender === 'male' ? 'he' : 'she'} is a ${obj.species}.`
+	const getGender = `${obj.gender === 'male' ? 'His' : 'Her'} gender is ${obj.gender}.`
+	const getLimbs = `${obj.gender === 'male' ? 'He' : 'She'} have ${obj.hands || 0} ${obj.hands === 1 ? 'hand' : 'hands'} and ${obj.legs || 0} ${obj.legs === 1 ? 'leg' : 'legs'}.`
+	const getFriends = `${obj.name} have ${obj.friends.length} ${obj.friends.length === 1 ? 'friend' : 'friends'}${obj.friends.length > 0 ? ': ' + obj.friends.join(', ') : ''}.`
+	const getSaying = `${obj.gender === 'male' ? 'He' : 'She'} usually says hello like this: ${obj.saying}`
+
+	return `${getAcquaintance} ${getGender} ${getLimbs} ${getFriends} ${getSaying}`
 }
 
 allInhabitant.forEach(el => {
