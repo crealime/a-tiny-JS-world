@@ -8,7 +8,7 @@
 // ======== OBJECTS DEFINITIONS ========
 
 function getRandomId() {
-  return Math.floor(1000 + Math.random() * (9999 + 1 - 1000)) + new Date().toLocaleString().replace(/\D/g, '')
+  return Math.floor(1000 + Math.random() * (9999 + 1 - 1000)) + new Date().getTime()
 }
 
 class Inhabitant {
