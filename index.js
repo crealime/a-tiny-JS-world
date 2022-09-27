@@ -22,8 +22,8 @@ class Inhabitant {
     this.friends = []
   }
 
-  addFriends(...rest) {
-    this.friends = [...this.friends, ...rest]
+  addFriends(...newFriends) {
+    this.friends = [...this.friends, ...newFriends]
   }
 
   getAcquaintanceInfo() {
